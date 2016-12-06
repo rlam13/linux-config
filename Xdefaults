@@ -1,0 +1,27 @@
+rxvt.loginShell:true
+rxvt.background:black
+rxvt.foreground:green
+rxvt.scrollBar:false
+rxvt.scrollBar_right:true
+#rxvt.transpscrollbar:true
+rxvt.saveLines:32767
+rxvt.geometry: 80x46
+rxvt.cursorColor: red
+rxvt.transparency: false
+rxvt.shading: 20
+#rxvt.tint: white
+rxvt.inheritPixmap: false
+rxvt.font: 9x15
+
+xterm*loginShell:true
+xterm*background:Black
+xterm*foreground:White
+xterm*scrollBar:false
+#xterm*scrollBar_right:true
+#xterm*transpscrollbar:true
+xterm*saveLines:32767
+xterm.vt100.geometry: 80x46
+xterm*cursorColor: green
+
+xterm.VT100.font: 9x15
+

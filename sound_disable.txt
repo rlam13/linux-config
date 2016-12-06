@@ -1,0 +1,21 @@
+lspci | grep -i audio
+
+Something like this should show up:
+02:00.1 Audio device: Nvidia Corporation High Definition Audio Controller (rev a1)
+
+Where \u201c02:00.1\u201d is the id we are looking for.
+Now let\u2019s find the matching pseudo file in /sys:
+find /sys/devices -name *02:00.1
+
+Something like this should show up now:
+/sys/devices/pci0000:00/0000:00:02.0/0000:02:00.1
+
+Bingo, the last thing to do is telling our kernel not to enable this hardware on boot.
+To do so, we need to write a \u201c1\u201d to this file:
+/sys/devices/pci0000:00/0000:00:02.0/0000:02:00.1/remove
+
+Add the following entry to your /etc/rc.local and and reboot your system.
+
+echo 1 > /sys/devices/pci0000:00/0000:00:02.0/0000:02:00.1/remove
+
+Note: you need to choose your own path of course.

@@ -1,0 +1,1 @@
+append="root=/dev/sdb1 rootdelay=10 vt.default_utf8=0" 

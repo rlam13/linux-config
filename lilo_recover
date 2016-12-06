@@ -1,0 +1,16 @@
+# fdisk -l /dev/hda
+// locate the device containing your / partition (the example assumes it is located in the master position of the Primary IDE controller)
+
+# mount /dev/hdaX /mnt
+// Once you find out which device contains your / partition, mount it somewhere
+
+# mount -o bind /dev /mnt/dev
+# mount -o bind /proc /mnt/proc
+// bind the /dev and /proc filesystems in the corresponding destinations inside the mountpoint of your / partition, just in case lilo needs them
+
+# chroot /mnt
+// chroot inside your / partition
+
+# lilo
+// rewrite lilo, according to the settings of it's configuration file, normally in /etc/lilo.conf
+

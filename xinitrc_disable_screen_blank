@@ -1,0 +1,4 @@
+xset -dpms     // This *should* turn off the dpms power management stuff
+xset s noblank // This should turn off screen blanking
+xset s off     // This turns off the screen saver
+
