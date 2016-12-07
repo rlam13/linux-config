@@ -12,7 +12,7 @@ runtime! debian.vim
 " Uncomment the next line to make Vim more Vi-compatible
 " NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
 " options, so any other options should be set AFTER setting 'compatible'.
-"set compatible
+set nocompatible
 
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
 " line enables syntax highlighting by default.
@@ -26,9 +26,9 @@ syntax on
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
-"if has("autocmd")
-"  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-"endif
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 " Uncomment the following to have Vim load indentation rules and plugins
 " according to the detected filetype.
@@ -36,6 +36,9 @@ syntax on
 "  filetype plugin indent on
 "endif
 
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+  
 " The following are commented out as they cause vim to behave a lot
 " differently from regular Vi. They are highly recommended though.
 set showcmd		" Show (partial) command in status line.
@@ -45,13 +48,14 @@ set smartcase		" Do smart case matching
 set incsearch		" Incremental search
 set autowrite		" Automatically save before commands like :next and :make
 set hidden		" Hide buffers when they are abandoned
-" set mouse=a		" Enable mouse usage (all modes)
-
-" highlight all matches after search
-set hlsearch
-
-" set numbered lines for columns
-set nu
+set nobackup            " do not keep a backup file, use versions instead
+set history=50          " keep 50 lines of command line history
+set ruler               " show the cursor position all the time
+set nowrap              " NO WRAPPING OF THE LINES!
+set hlsearch    	" highlight all matches after search
+set nu                  " set numbered lines for columns
+set encoding=utf-8      " UTF8 Support
+" set mouse=a         	" Enable mouse usage (all modes)
 
 " Enable folding
 set foldmethod=indent
@@ -68,7 +72,8 @@ au BufNewFile,BufRead *.py
     \ set expandtab
     \ set autoindent
     \ set fileformat=unix
-
+    \ set smarttab=4
+    
 "  full stack dev
 au BufNewFile,BufRead *.js, *.html, *.css
     \ set tabstop=2
@@ -76,18 +81,7 @@ au BufNewFile,BufRead *.js, *.html, *.css
     \ set shiftwidth=2
 
 " flag unnecessary whitespace
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-
-" UTF8 Support
-set encoding=utf-8
-
-
-
-" Uncomment the following to have Vim jump to the last position when
-" reopening a file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
